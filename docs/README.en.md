@@ -125,3 +125,5 @@ curl http://127.0.0.1:30000/api/get_current_game_state
 - Supports single-save `import` / `export` (JSON).
 - Supports batch save package `import` / `export` (JSON, overwrite by `game_id`).
 - Port details: unified access endpoint is `http://127.0.0.1:30000` (same in development mode; Vite proxies `/api`, `/health`, `/ws` to internal BFF); internal BFF default port is `31000`.
+
+![技术交流群二维码](./images/wechat.jpg)
